@@ -1,4 +1,4 @@
 # CTFGNAS
-Add new file data and logs
+1. Add new file 'data' and 'logs'.
 
-run main.py
+2. Run main.py
