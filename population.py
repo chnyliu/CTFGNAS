@@ -355,22 +355,16 @@ class Evolution_Trainer(object):
         self.offspring = []
 
     def derive(self):
-        fir_loss, sec_loss = 1e+7, 1e+8
-        fir_index, sec_index = -1, -1
+        fir_loss = 1e+7
+        fir_index = -1
         for index, individual in enumerate(self.eva_indi_arc):
             if individual.val_loss < fir_loss:
                 fir_loss, fir_index = individual.val_loss, index
-        for index, individual in enumerate(self.population):
-            if individual.val_loss < sec_loss:
-                sec_loss, sec_index = individual.val_loss, index
         
         top_loss = self.eva_indi_arc[fir_index].val_loss
         top_acc = self.eva_indi_arc[fir_index].test_acc
         top_geno = self.eva_indi_arc[fir_index].genoBin_sim
         
-        if self.population[sec_index].genoBin_sim != self.eva_indi_arc[fir_index].genoBin_sim:
-            self.args.tune_genotype = self.population[sec_index].genoBin_sim
-            self.args, top_loss, top_acc, top_geno = run_fine_tune(self.args, self.log, self.population[sec_index], top_loss, top_acc, top_geno)
         self.args.tune_genotype = self.eva_indi_arc[fir_index].genoBin_sim
         self.args, top_loss, top_acc, top_geno = run_fine_tune(self.args, self.log, self.eva_indi_arc[fir_index], top_loss, top_acc, top_geno)
         
