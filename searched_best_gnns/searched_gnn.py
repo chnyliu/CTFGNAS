@@ -34,5 +34,5 @@ def main():
 
 
 if __name__ == '__main__':
-    data_name = 'Cora'  # Cora, CiteSeer, PubMed, Cornell, Texas, Wisconsin, Chameleon
+    data_name = 'Cora'  # Cora, CiteSeer, PubMed, Cornell, Texas, Wisconsin
     main()
